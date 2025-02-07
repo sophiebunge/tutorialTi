@@ -1,4 +1,4 @@
-const pages = ['Introduction', '1. Putting it Together', 'usage', 'faq'];
+const pages = ['Introduction', 'Installation', 'usage', 'faq'];
 
 async function loadPage(page) {
     if (!pages.includes(page)) return;
@@ -74,7 +74,6 @@ function loadNextPage() {
         loadPage(nextPage);
     }
 }
-
 
 // Run functions on page load
 document.addEventListener("DOMContentLoaded", () => {
