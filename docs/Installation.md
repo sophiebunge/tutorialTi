@@ -1,35 +1,119 @@
-# Introduction
-Hello dear ctechy, glad to see you here. This is a tutorial to create a responsive digital visualization. The tutorial is targeted to beginners and even if you have never put your hands on a Arduino, you will be able to follow! 
+# The Components
 
-## Setup
-
-**Hardware**
-- Arduino
-- Breadcrumb
-- Power Cable
-- Laptop or PC
-
-image of arduino setup
-
-**Software**
-
-- TouchDesigner
-- Arduino IDE
-
-image of download ide arduino
-
-
-## Components Explained 
-
-**Arduino Uno**
+## Arduino Uno
 
 Arduino Uno is a microcontroller board used for building electronic projects. It is easy to program and connects sensors, motors, and other components to create interactive devices. 🚀
 
-**Breadboard**
+<img src="./img/Introduction-to-Arduino-UNO-600x511-min.jpg" alt="Layout Breadbord" width="400">
+
+- **Analog In:** Which is our trigger and connected to the sensor
+- **Digital Out:** Which sends our input to the the code
+- **5V:** Which is our power
+- **GND:** Wich is the ground. (GND is the point in a circuit where the electricity flows back to complete the circuit.)
+
+<details>
+
+<summary>More About Arduino Uno</summary>
+The Arduino Uno is a microcontroller board used for building digital and analog projects. Here’s a quick overview of its key components:
+
+**Digital Pins (0-13):**
+
+Used for digital input/output (high/low signals). *For example: LED Pins that "blink".*
+
+
+**Analog Pins (A0-A5):**
+
+Used for analog input (sensing voltage levels). *For example: Sensors, motors, temperatur measurement input*
+
+**Power Pins:**
+
+**5V:** Supplies 5V power to your circuit.
+
+**GND:** Ground pin for completing circuits.
+
+**Vin:** Input voltage pin for external power sources.
+
+**Reset Button:**
+
+Resets the microcontroller when pressed.
+
+**USB Port:**
+
+Used for programming the board and powering it from a computer.
+
+**Power LED & Status LED:**
+
+Indicate the board’s power status and program execution.
+</details>
+
+
+## Breadbord
 
 A breadboard is a reusable board for prototyping circuits without soldering. It allows easy connections using jumper wires and electronic components. ⚡
 
-**HC-SRO4 Sensor Ultrasonic**
+- The side power rails distribute power (+ and -).
+- The main grid connects components in rows.
+
+![Layout Breadbord](./img/breadbordLayout.png)
+
+
+<details>
+
+<summary>More About Breadbords</summary>
+
+A breadboard is used for prototyping electronic circuits without soldering. Here's the essential layout:
+
+**Power Rails:**
+
++ rail (red): For positive voltage.
+- rail (blue/black): For ground.
+Main Grid:
+
+**Rows:**
+
+Columns A-E and F-J are electrically connected in each row. Place components in these rows, but don’t mix A-E with F-J.
+
+**Columns:**
+
+The rows are connected internally in groups (e.g., A1-A5, B1-B5), allowing easy connections between components.
+
+</details>
+
+## The Sensor
 
 The HC-SR04 is an ultrasonic sensor that measures distance using sound waves. It sends a sound pulse and calculates the time it takes to return, determining the object's distance. 🔊 
 
+The ultrasonic sensor has four little legs `GND` `Echo` `Trig` `Vcc`. Each pin has a specific function:
+<img src="./img/SensorLayout.png" alt="Layout Breadbord" width="400">
+
+
+
+**GND:** Stands for *Ground*. It connects to the negative (-) side of the power supply, completing the circuit.
+
+**Echo:** Sends a signal back to the microcontroller after the sound wave bounces off an object. The time it takes helps calculate distance.
+
+**Trig:** Short for *Trigger*. The microcontroller sends a pulse to this pin to initiate the ultrasonic sound wave.
+
+**VCC:** Supplies power to the sensor, usually 5V from the microcontroller or power source.
+These four pins work together to measure distances using sound waves. 🎯
+
+
+# Assemble
+
+## 1. Connect Sensor and Board
+
+First we will need to connect the Sensor with the Breadbord. Anywhere is fine.
+Image
+
+## 2. Connect Board and Arduino
+
+Connect using the cables the Breadbord with the Arduino as follows: 
+
+`VCC`-> 5V
+`Trig`-> 3 (Analog)
+`Echo`-> 2 (Analog)
+`Gnd`-> GND
+
+## 3. Connect Arduino and Computer
+
+To finalize connect the Arduino to a Computer.

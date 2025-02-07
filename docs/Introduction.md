@@ -5,7 +5,7 @@ Hello dear ctechy, glad to see you here. This is a tutorial to create a responsi
 
 **Hardware**
 - Arduino
-- Breadcrumb
+- Breadbord
 - Power Cable
 - Laptop or PC
 
@@ -19,17 +19,19 @@ image of arduino setup
 image of download ide arduino
 
 
-## Components Explained 
+# Infos
 
-**Arduino Uno**
+This tutorial includes extra informations in collapsible sections. These provide detailed explanations about the steps, hardware, setup, and more. However, these extra details are optional, and you can complete the tutorial without them.  ✅
 
-Arduino Uno is a microcontroller board used for building electronic projects. It is easy to program and connects sensors, motors, and other components to create interactive devices. 🚀
 
-**Breadboard**
+<details>
 
-A breadboard is a reusable board for prototyping circuits without soldering. It allows easy connections using jumper wires and electronic components. ⚡
+<summary>Example of collapsible text</summary>
 
-**HC-SRO4 Sensor Ultrasonic**
+Hi, here you will find additional details. 
 
-The HC-SR04 is an ultrasonic sensor that measures distance using sound waves. It sends a sound pulse and calculates the time it takes to return, determining the object's distance. 🔊 
+</details>
 
+<br>
+
+Let's Start!

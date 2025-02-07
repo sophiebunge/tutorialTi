@@ -193,3 +193,22 @@ code {
     border-radius: 10px;
 }
 
+/* Collapsible <details> sections */
+details {
+    margin-top: 10px;
+    padding-left: 20px; /* Indentation */
+    border-left: 2px solid #ccc; /* Optional: a subtle left border */
+}
+
+/* Collapsible summary (clickable part) */
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 5px; /* Minor padding for alignment */
+    list-style: none; /* Removes default disclosure triangle in some browsers */
+}
+
+/* Style when <details> is expanded */
+details[open] {
+    padding-bottom: 5px; /* Adds space when expanded */
+}

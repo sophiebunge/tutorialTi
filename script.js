@@ -105,3 +105,22 @@ async function loadPage(page) {
     updateNextButton(page);
     updateActiveMenu(page); // Mark active menu item
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    loadPage('home', document.querySelector('.sidebar ul li a')); // Load the default page
+    setupCollapsibles(); // Initialize collapsible sections
+});
+
+function setupCollapsibles() {
+    document.querySelectorAll(".collapsible").forEach(button => {
+        button.addEventListener("click", function () {
+            this.classList.toggle("active");
+            let content = this.nextElementSibling;
+            if (content.style.display === "block") {
+                content.style.display = "none";
+            } else {
+                content.style.display = "block";
+            }
+        });
+    });
+}
