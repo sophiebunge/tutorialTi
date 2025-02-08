@@ -1,4 +1,4 @@
-const pages = ['Introduction', '1. Assemble', '2. Coding']; // Define valid pages
+const pages = ['Introduction', '1.Assemble', '2.Coding']; // Define valid pages
 
 // Function to load and display content
 async function loadPage(page) {
