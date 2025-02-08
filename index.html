@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
@@ -15,13 +14,19 @@
                 <li><a href="#" onclick="loadPage('Introduction')">Introduction</a></li>
                 <li><a href="#" onclick="loadPage('Installation')">1. Assemble</a></li>
                 <li><a href="#" onclick="loadPage('usage')">2. Coding</a></li>
-                <li><a href="#" onclick="loadPage('faq')">3. Importing</a></li>
             </ul>
         </nav>
+        <div class="sidebar">
+            <ul>
+                <li><a href="#Introduction">Introduction</a></li>
+                <li><a href="#Installation">Installation</a></li>
+                <li><a href="#Usage">Usage</a></li>
+            </ul>
+        </div>
+        
         <main class="content">
            
             <div id="content"></div>
-            <button id="nextButton" onclick="loadNextPage()">Next</button>
         </main>
         <aside class="toc">
             

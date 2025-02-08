@@ -8,29 +8,34 @@ body {
     height: 100%;
 }
 
-/* Global container */
+/* Container Layout */
 .container {
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 100vh;
-    padding-left: 100px;
-    max-width: 1200px;
+    overflow: hidden;
 }
-
-/* Sidebar styles */
+/* Sidebar (Menu) */
 .sidebar {
+    width: 20%;
+    min-width: 120px;
+    max-width: 250px;
+    padding-left: 40px;
     position: fixed;
-    width: 250px;
-    padding: 0;
-    top: 110px;
-    left: 90px;
-    height: calc(100vh - 60px);
-    text-align: left;
+    left: 20px;
+    top: 40px;
+    bottom: 0;
+    background-color: #ffffff;
     overflow-y: auto;
 }
 
 .sidebar a:hover {
+    color: rgb(13, 9, 229);
+}
+
+.sidebar ul li a.active {
+    font-weight: bold;
     color: rgb(13, 9, 229);
 }
 
@@ -53,18 +58,17 @@ body {
 .sidebar ul li a.active {
     color:  rgb(13, 9, 229);
     border-radius: 4px;
-    font-weight: 800;
-
+    font-weight: bold;
 }
 
-/* Content area */
+/* Content Area */
 .content {
-    margin-left: 270px;
     flex: 1;
-    padding: 40px 30px;
+    margin-left: 22%; /* Ensures no overlap with sidebar */
+    padding: 20px;
+    max-width: calc(100% - 40%); /* Dynamically adjusts width to prevent TOC overlap */
     overflow-y: auto;
-    max-height: calc(100vh - 60px);
-    max-width: calc(100vw - 400px); /* Ensures content does not overlap TOC */
+    box-sizing: border-box;
 }
 
 /* Breadcrumb navigation */
@@ -77,15 +81,20 @@ body {
     padding-left: 20px;
 }
 
-/* Table of contents (TOC) */
+/* Table of Contents (TOC) */
 .toc {
+    width: 18%;
+    max-width: 250px;
+    min-width: 200px;
+    padding: 20px;
     position: fixed;
-    top: 85px;
-    height: calc(100vh - 85px);
+    right: 0;
+    top: 0;
+    bottom: 0;
     overflow-y: auto;
-    left: 1340px;
-    padding-right: 5px;
+    background-color: #ffffff;
 }
+
 
 /* TOC list styles */
 #toc-list {
@@ -163,7 +172,7 @@ body {
 }
 
 #nextButton:hover {
-    background-color: rgb(13, 9, 229);
+    background-color: rgb(7, 6, 108);
     transform: translateY(-2px);
 }
 
@@ -197,7 +206,7 @@ code {
 details {
     margin-top: 10px;
     padding-left: 20px; /* Indentation */
-    border-left: 2px solid #ccc; /* Optional: a subtle left border */
+    border-left: 2px solid #ffffff; /* Optional: a subtle left border */
 }
 
 /* Collapsible summary (clickable part) */
@@ -212,3 +221,41 @@ summary {
 details[open] {
     padding-bottom: 5px; /* Adds space when expanded */
 }
+
+/* Responsive Design Adjustments */
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        position: relative;
+        max-width: none;
+        height: auto;
+    }
+    .content {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 60px;
+    }
+    .toc {
+        width: 100%;
+        position: relative;
+        max-width: none;
+        height: auto;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar, .toc {
+        display: none; /* Hide sidebar and TOC on small screens */
+    }
+    .content {
+        width: 100%;
+        margin-left: 0;
+        padding: 10px;
+    }
+}
+
+

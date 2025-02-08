@@ -1,126 +1,76 @@
-const pages = ['Introduction', 'Installation', 'usage', 'faq'];
+const pages = ['Introduction', '1. Assemble', '2. Coding']; // Define valid pages
 
+// Function to load and display content
 async function loadPage(page) {
-    if (!pages.includes(page)) return;
+    if (!pages.includes(page)) {
+        document.getElementById("content").innerHTML = "<p>Page not found.</p>";
+        return;
+    }
+    try {
+        const response = await fetch(`docs/${page}.md`); // Adjust path as needed
+        const text = await response.text();
+        const htmlContent = marked.parse(text); // Convert Markdown to HTML
+        document.getElementById("content").innerHTML = htmlContent;
 
-    const response = await fetch(`docs/${page}.md`);
-    const text = await response.text();
-    const htmlContent = marked.parse(text);
+        // Update active menu item
+        updateActiveMenu(page);
 
-    // Update the content
-    document.getElementById("content").innerHTML = htmlContent;
-
-    // Assign unique IDs to headers inside the content div
-    assignHeaderIDs();
-
-    // Generate Table of Contents dynamically
-    generateTOC();
-
-    // Enable checkboxes to be interactive
-    makeCheckboxesInteractive();
-
-    // Update Next Button
-    updateNextButton(page);
+        // Additional UI updates (e.g., TOC generation)
+        assignHeaderIDs();
+        generateTOC();
+    } catch (error) {
+        console.error("Error loading page:", error);
+        document.getElementById("content").innerHTML = "<p>Error loading content.</p>";
+    }
 }
 
-function assignHeaderIDs() {
-    const contentDiv = document.getElementById("content");
-    const headers = contentDiv.querySelectorAll("h1, h2, h3, h4, h5, h6");
-
-    headers.forEach(header => {
-        const text = header.innerText || header.textContent;
-        const id = text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
-        header.id = id;  // Assign ID to the header
+// Function to update active menu item
+function updateActiveMenu(page) {
+    document.querySelectorAll(".sidebar ul li a").forEach(link => {
+        link.classList.remove("active");
+        if (link.textContent.trim() === page) {
+            link.classList.add("active");
+        }
     });
 }
 
-function generateTOC() {
-    const tocList = document.getElementById("toc-list");
-    tocList.innerHTML = ""; // Clear previous TOC
+// Function to handle hash changes
+function handleHashChange() {
+    const currentPage = window.location.hash.replace("#", "") || "Introduction"; // Default to 'Introduction'
+    loadPage(currentPage);
+}
 
+// Assign unique IDs to headers for TOC
+function assignHeaderIDs() {
     const contentDiv = document.getElementById("content");
     const headers = contentDiv.querySelectorAll("h1, h2, h3, h4, h5, h6");
-
     headers.forEach(header => {
-        const level = parseInt(header.tagName.charAt(1)); // Extract heading level (1-6)
+        const text = header.innerText || header.textContent;
+        const id = text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
+        header.id = id;
+    });
+}
+
+// Generate Table of Contents dynamically
+function generateTOC() {
+    const tocList = document.getElementById("toc-list");
+    tocList.innerHTML = "";
+    const contentDiv = document.getElementById("content");
+    const headers = contentDiv.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    headers.forEach(header => {
+        const level = parseInt(header.tagName.charAt(1));
         const tocItem = document.createElement("li");
         tocItem.classList.add(`heading-${level}`);
-
         const tocLink = document.createElement("a");
         tocLink.href = `#${header.id}`;
         tocLink.textContent = header.textContent;
-
         tocItem.appendChild(tocLink);
         tocList.appendChild(tocItem);
     });
 }
 
-
-
-function updateNextButton(currentPage) {
-    const nextButton = document.getElementById("nextButton");
-    const currentIndex = pages.indexOf(currentPage);
-    if (currentIndex < pages.length - 1) {
-        nextButton.style.display = 'block';
-        nextButton.setAttribute('data-next-page', pages[currentIndex + 1]);
-    } else {
-        nextButton.style.display = 'none';
-    }
-}
-
-function loadNextPage() {
-    const nextPage = document.getElementById("nextButton").getAttribute('data-next-page');
-    if (nextPage) {
-        loadPage(nextPage);
-    }
-}
-
-// Run functions on page load
+// Initialize application
 document.addEventListener("DOMContentLoaded", () => {
-    loadPage('Introduction');
+    handleHashChange(); // Load initial page
+    window.addEventListener("hashchange", handleHashChange); // Handle hash changes
 });
-
-function updateActiveMenu(page) {
-    document.querySelectorAll(".sidebar ul li a").forEach(link => {
-        link.classList.remove("active"); // Remove active class from all
-        if (link.getAttribute("onclick") === `loadPage('${page}')`) {
-            link.classList.add("active"); // Add active class to the current menu
-        }
-    });
-}
-
-async function loadPage(page) {
-    if (!pages.includes(page)) return;
-
-    const response = await fetch(`docs/${page}.md`);
-    const text = await response.text();
-    const htmlContent = marked.parse(text);
-
-    document.getElementById("content").innerHTML = htmlContent;
-
-    assignHeaderIDs();
-    generateTOC();
-    makeCheckboxesInteractive();
-    
-    updateNextButton(page);
-    updateActiveMenu(page); // Mark active menu item
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    loadPage('home', document.querySelector('.sidebar ul li a')); // Load the default page
-    setupCollapsibles(); // Initialize collapsible sections
-});
-
-function setupCollapsibles() {
-    document.querySelectorAll(".collapsible").forEach(button => {
-        button.addEventListener("click", function () {
-            this.classList.toggle("active");
-            let content = this.nextElementSibling;
-            if (content.style.display === "block") {
-                content.style.display = "none";
-            } else {
-                content.style.display = "block";
-            }
-        });
-    });
-}
