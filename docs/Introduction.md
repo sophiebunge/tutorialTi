@@ -3,9 +3,13 @@ Hello dear ctechy, glad to see you here. This is a tutorial to create a responsi
 
 **Responsive digital visualization in TouchDesigner**
 
-<img src="./img/Final.mov" alt="Result" width="800">
+<video width="800" controls>
+  <source src="./img/Final.mov" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
-## Before we Start
+
+## Before We Start
 
 Make sure you have all these pieces and downloaded the softwares.
 
