@@ -20,7 +20,7 @@ Make sure you have all these pieces and downloaded the softwares.
 - Laptop or PC
 - Cables
 
-<img src="./img/Setup.jpg" alt="Result" width="800">
+<img src="./img/SetupNew.jpg" alt="Result" width="800">
 
 **Software**
 
