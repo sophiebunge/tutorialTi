@@ -45,4 +45,4 @@ Hi, here you will find additional details.
 
 <br>
 
-Let's Start!
+Let's Start! go to 1. Assemble

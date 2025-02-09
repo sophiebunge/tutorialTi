@@ -39,8 +39,6 @@ body {
     color: rgb(13, 9, 229);
 }
 
-
-
 .sidebar ul {
     list-style: none;
     padding: 0;
@@ -90,7 +88,6 @@ body {
     overflow-y: auto;
     background-color: #ffffff;
 }
-
 
 /* TOC list styles */
 #toc-list {
